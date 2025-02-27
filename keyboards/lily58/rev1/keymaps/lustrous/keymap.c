@@ -7,10 +7,10 @@
 #define HRM_A_S LALT_T(KC_S)
 #define HRM_C_D LCTL_T(KC_D)
 #define HRM_S_F LSFT_T(KC_F)
-#define HRM_S_J LSFT_T(KC_J)
-#define HRM_C_K LCTL_T(KC_K)
-#define HRM_A_L LALT_T(KC_L)
-#define HRM_G_SCLN LGUI_T(KC_SCLN)
+#define HRM_S_J RSFT_T(KC_J)
+#define HRM_C_K RCTL_T(KC_K)
+#define HRM_A_L RALT_T(KC_L)
+#define HRM_G_SCLN RGUI_T(KC_SCLN)
 
 enum layer_number {
   _QWERTY = 0,
