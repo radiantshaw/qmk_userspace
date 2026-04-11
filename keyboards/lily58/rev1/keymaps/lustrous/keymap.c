@@ -12,6 +12,33 @@
 #define HRM_A_L RALT_T(KC_L)
 #define HRM_G_SCLN RGUI_T(KC_SCLN)
 
+enum custom_keycodes {
+  /*
+   * Symbol sequences
+   */
+  SS_HDIR = SAFE_RANGE,
+  SS_CDIR,
+  SS_PDIR,
+  SS_SHBG,
+  SS_NEQ,
+  SS_EQL,
+  SS_SNEQ,
+  SS_SEQL,
+  SS_ARW,
+  SS_FARW,
+  SS_DCLN,
+  SS_DAMP,
+  SS_DPIP,
+  SS_DAMA,
+  SS_DPIA,
+  SS_ESOA,
+  SS_ESCA,
+  SS_ESOP,
+  SS_ESCP,
+  SS_ESOB,
+  SS_ESCB
+};
+
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
@@ -41,50 +68,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_CAPS, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                   KC_Y, KC_U,    KC_I,    KC_O,    KC_P,       KC_LBRC,
   KC_ESC,  HRM_G_A, HRM_A_S, HRM_C_D, HRM_S_F, KC_G,                   KC_H, HRM_S_J, HRM_C_K, HRM_A_L, HRM_G_SCLN, KC_RBRC,
   KC_TAB,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_BSLS, KC_QUOT, KC_N, KC_M,    KC_COMM, KC_DOT,  KC_SLSH,    KC_EQL,
-                        KC_LGUI, KC_DEL, MO(_LOWER), KC_SPC,  KC_ENT, MO(_RAISE), KC_BSPC, KC_RGUI
+                        KC_LGUI, KC_DEL, MO(_LOWER), KC_SPC,  KC_ENT,  MO(_RAISE), KC_BSPC, KC_RGUI
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
+ * | N/A  | F1   | F2   | F3   | F4   | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |                    | Home |PageDn|PageUp| End  | N/A  | N/A  |
+ * | N/A  | F5   | F6   | F7   | F8   | N/A  |                    | Home |PageDn|PageUp| End  | N/A  | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * | N/A  | LGUI | LAlt |LCTRL |LShift| N/A  |-------.    ,-------| Left | Down |  Up  |Right | N/A  | N/A  |
  * |------+------+------+------+------+------|  N/A  |    |  N/A  |------+------+------+------+------+------|
- * | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |-------|    |-------| N/A  |DTDown| DTUp |DTPrnt| N/A  | N/A  |
+ * | N/A  | F9   | F10  | F11  | F12  | N/A  |-------|    |-------| N/A  |DTDown| DTUp |DTPrnt| N/A  | N/A  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   | N/A  | N/A  | N/A  | / N/A   /       \ N/A  \  | N/A  | N/A  | N/A  |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
 [_LOWER] = LAYOUT(
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX,                   KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
   XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DT_DOWN, DT_UP,   DT_PRNT, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DT_DOWN, DT_UP,   DT_PRNT, XXXXXXX, XXXXXXX,
                              XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
+
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
- * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+ * |  ~/  | ../  |  #!  | !==  | ===  | N/A  |                    | N/A  | N/A  | N/A  | N/A  | N/A  | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |      |
+ * |  ./  | N/A  | N/A  |  !=  |  ==  | N/A  |                    | N/A  | N/A  |  \(  |  \)  | N/A  | N/A  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |-------.    ,-------| Left | Down |  Up  |Right |      |      |
- * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
- * |  F7  |  F8  |  F9  | F10  | F11  | F12  |-------|    |-------|   +  |   -  |   =  |   [  |   ]  |   \  |
+ * |  ->  |  =>  |  ::  | &&=  | ||=  | N/A  |-------.    ,-------| N/A  | N/A  |  \<  |  \>  | N/A  | N/A  |
+ * |------+------+------+------+------+------|  N/A  |    |  N/A  |------+------+------+------+------+------|
+ * | N/A  | N/A  | N/A  |  &&  |  ||  | N/A  |-------|    |-------| N/A  | N/A  |  \{  |  \}  | N/A  | N/A  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   | N/A  | N/A  | N/A  | /N/A    /       \ N/A  \  | N/A  | N/A  | N/A  |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-
 [_RAISE] = LAYOUT(
-  _______, _______, _______, _______, _______, _______,                     _______, _______, _______, _______, _______, _______,
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                        KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                       KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, XXXXXXX, XXXXXXX,
-  KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,   _______, _______,  KC_PLUS, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-                             _______, _______, _______,  _______, _______,  _______, _______, _______
+  SS_HDIR, SS_PDIR, SS_SHBG, SS_SNEQ, SS_SEQL, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  SS_CDIR, XXXXXXX, XXXXXXX, SS_NEQ,  SS_EQL,  XXXXXXX,                   XXXXXXX, XXXXXXX, SS_ESOP, SS_ESCP, XXXXXXX, XXXXXXX,
+  SS_ARW,  SS_FARW, SS_DCLN, SS_DAMA, SS_DPIA, XXXXXXX,                   XXXXXXX, XXXXXXX, SS_ESOA, SS_ESCA, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, SS_DAMP, SS_DPIP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SS_ESOB, SS_ESCB, XXXXXXX, XXXXXXX,
+                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -156,6 +183,72 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     set_keylog(keycode, record);
 #endif
     // set_timelog();
+
+    switch (keycode) {
+        case SS_HDIR:
+          SEND_STRING("~/");
+          return false;
+        case SS_CDIR:
+          SEND_STRING("./");
+          return false;
+        case SS_PDIR:
+          SEND_STRING("../");
+          return false;
+        case SS_SHBG:
+          SEND_STRING("#!");
+          return false;
+        case SS_NEQ:
+          SEND_STRING("!=");
+          return false;
+        case SS_EQL:
+          SEND_STRING("==");
+          return false;
+        case SS_SNEQ:
+          SEND_STRING("!==");
+          return false;
+        case SS_SEQL:
+          SEND_STRING("===");
+          return false;
+        case SS_ARW:
+          SEND_STRING("->");
+          return false;
+        case SS_FARW:
+          SEND_STRING("=>");
+          return false;
+        case SS_DCLN:
+          SEND_STRING("::");
+          return false;
+        case SS_DAMP:
+          SEND_STRING("&&");
+          return false;
+        case SS_DPIP:
+          SEND_STRING("||");
+          return false;
+        case SS_DAMA:
+          SEND_STRING("&&=");
+          return false;
+        case SS_DPIA:
+          SEND_STRING("||=");
+          return false;
+        case SS_ESOA:
+          SEND_STRING("\\<");
+          return false;
+        case SS_ESCA:
+          SEND_STRING("\\>");
+          return false;
+        case SS_ESOP:
+          SEND_STRING("\\(");
+          return false;
+        case SS_ESCP:
+          SEND_STRING("\\)");
+          return false;
+        case SS_ESOB:
+          SEND_STRING("\\{");
+          return false;
+        case SS_ESCB:
+          SEND_STRING("\\}");
+          return false;
+    }
   }
   return true;
 }
